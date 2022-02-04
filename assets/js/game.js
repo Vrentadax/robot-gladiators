@@ -1,6 +1,5 @@
 // fight function (now with parameter for enemy's name)
 var fight = function (enemy) {
-    console.log("slek");
     while (playerInfo.health > 0 && enemy.health > 0) {
         // ask player if they'd like to fight or run
         var promptFight = window.prompt('Would you like to FIGHT or SKIP this battle? Enter "FIGHT" or "SKIP" to choose.');
@@ -138,32 +137,12 @@ var shop = function () {
     switch (shopOptionPrompt) {
         case "REFILL":
         case "refill":
-            if (playerInfo.money >= 7) {
-                window.alert("Refilling player's health by 20 for 7 dollars.");
-
-                // increase health/decrease money
-                playerInfo.health = playerInfo.health + 20;
-                playerInfo.money = playerInfo.money - 7;
-                break;
-            }
-            else {
-                window.alert("You don't have enough money!");
-            }
+            playerInfo.refillHealth();
             break;
 
         case "UPGRADE":
         case "upgrade":
-            if (playerInfo.money >= 7) {
-                window.alert("Upgrading player's attack by 6 for 7 dollars.");
-
-                // increase attk/decrease money
-                playerInfo.attack = playerInfo.attack + 6;
-                playerInfo.money = playerInfo.money - 7;
-                break;
-            }
-            else {
-                window.alert("You don't have enough money!");
-            }
+            playerInfo.upgradeAttack();
             break;
 
         case "LEAVE":
@@ -198,7 +177,7 @@ var playerInfo = {
     reset: function () {
         if (this.name === "Daxbot") {
             this.health = 1000;
-            this.money = 100;
+            this.money = 1000;
             this.attack = 50;
         } else {
             this.health = 100;
@@ -208,6 +187,7 @@ var playerInfo = {
     },
     refillHealth: function () {
         if (this.name === "Daxbot") {
+            window.alert("Wait! The legendary Daxbot! Refilling 100 health on the house!");
             this.health += 100;
             this.money -= 0;
         } else {
@@ -222,6 +202,7 @@ var playerInfo = {
     },
     upgradeAttack: function () {
         if (this.name === "Daxbot") {
+            window.alert("Wait! The legendary Daxbot! Upgrading attack by 50 on the house!");
             this.attack += 50;
             this.money -= 0;
         } else {
